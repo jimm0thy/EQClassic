@@ -394,6 +394,7 @@ namespace EQC
 
 			if (strncasecmp(name, "LS#", 3) == 0)
 			{
+				cout << "We have entered the Account Verification / Creation routine!" << endl;
 				if (loginserver == 0)
 				{
 					cout << "Error: Login server login while not connected to login server." << endl;
@@ -412,7 +413,9 @@ namespace EQC
 					if (this->account_id == 0)
 					{
 						// create a loing account? - erm? wtf? Dark-Park-Prince
-						Database::Instance()->CreateAccount(lsa->name, "", 0, lsa->lsaccount_id);
+						//Database::Instance()->CreateAccount(lsa->name, lsa->key, 0, lsa->lsaccount_id);
+						Database::Instance()->CreateAccount(lsa->lsaccount_id);
+
 
 						// get the newly created accounts ID
 						this->account_id = Database::Instance()->GetAccountIDFromLSID(lsa->lsaccount_id);

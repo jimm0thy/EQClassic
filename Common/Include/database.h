@@ -117,7 +117,8 @@ public:
 
 	int32	CheckLogin(char* name, char* password);
 	int8	CheckStatus(int32 account_id);
-	bool	CreateAccount(char* name, char* password, int8 status, int32 lsaccount_id = 0);
+	//bool	CreateAccount(char* name, char* password, int8 status, int32 lsaccount_id = 0);
+	bool	CreateAccount(int32 lsaccount_id = 0);
 	bool	DeleteAccount(char* name);
 	bool	SetGMFlag(char* name, int8 status);
 	bool	CheckZoneserverAuth(char* ipaddr);

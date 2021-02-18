@@ -1951,8 +1951,8 @@ void Client::ProcessCommand(char* message)
 			Message(BLACK, "  #shutdown - Shuts down the server.");
 			Message(BLACK, "  #worldshutdown - Shuts down the worldserver and all zones.");
 			Message(BLACK, "  #flag [name] [status] - Flags an account with GM status.");
-			Message(BLACK, "  #createacct [name] [password] [status] - Creates an EQC account.");
-			Message(BLACK, "  #delacct [name] - Deletes an EQC account.");
+			//Message(BLACK, "  #createacct [name] [password] [status] - Creates an EQC account.");
+			//Message(BLACK, "  #delacct [name] - Deletes an EQC account.");
 			Message(BLACK, "  #zsave [file name] - Save the current zone header to ./cfg/<filename>.cfg");
 			Message(BLACK, "  #dbspawn2 [spawngroup] [respawn] [variance]");
 			Message(BLACK, "  #npcupdate - Update target npc's spawn point and heading to your current position and heading"); 
@@ -2198,28 +2198,29 @@ void Client::ProcessCommand(char* message)
 			entity_list.AddNPC(npc);
 		}
 	}
-	if (strcasecmp(sep.arg[0], "#createacct") == 0 && admin >= 200) //TODO: Still needed?
-	{
-		if(sep.arg[3][0] == 0) {
-			Message(BLACK, "Format: #createacct accountname accountpassword accountstatus(no spaces) (Account Status: 0 = Normal, 10=PU, 20=PU2, 100=GM, 150=LGM, 200=ServerOP)");
-		} else {
-			if (Database::Instance()->CreateAccount(sep.arg[1],sep.arg[2], atoi(sep.arg[3]),0) == 0)
-				Message(BLACK, "Unable to create account.");
-			else
-				Message(BLACK, "The account was created.");
-		}
-	}
-	if (strcasecmp(sep.arg[0], "#delacct") == 0 && admin >= 200) // TODO: Still needed?
-	{
-		if(sep.arg[1][0] == 0) {
-			Message(BLACK, "Format: #delacct accountname");
-		} else {
-			if (Database::Instance()->DeleteAccount(name) == 0)
-				Message(BLACK, "Unable to delete account.");
-			else
-				Message(BLACK, "The account was deleted."); 
-		}
-	}	
+	// jimm0thy - Removed Account Create and Delete GM Commands as they're not really needed
+	//if (strcasecmp(sep.arg[0], "#createacct") == 0 && admin >= 200) //TODO: Still needed?
+	//{
+	//	if(sep.arg[3][0] == 0) {
+	//		Message(BLACK, "Format: #createacct accountname accountpassword accountstatus(no spaces) (Account Status: 0 = Normal, 10=PU, 20=PU2, 100=GM, 150=LGM, 200=ServerOP)");
+	//	} else {
+	//		if (Database::Instance()->CreateAccount(0) == 0) // jimm0thy - this was edited with account creation when logging in and will need to be re-done for this command to work
+	//			Message(BLACK, "Unable to create account.");
+	//		else
+	//			Message(BLACK, "The account was created.");
+	//	}
+	//}
+	//if (strcasecmp(sep.arg[0], "#delacct") == 0 && admin >= 200) // TODO: Still needed?
+	//{
+	//	if(sep.arg[1][0] == 0) {
+	//		Message(BLACK, "Format: #delacct accountname");
+	//	} else {
+	//		if (Database::Instance()->DeleteAccount(name) == 0)
+	//			Message(BLACK, "Unable to delete account.");
+	//		else
+	//			Message(BLACK, "The account was deleted."); 
+	//	}
+	//}	
 	if (strcasecmp(sep.arg[0], "#size") == 0 && (admin >= EQC_Alpha_Tester))	{
 		if (!sep.IsNumber(1)) //TODO: <-- Ilike this, lets impliment it in other places!
 			Message(BLACK, "Usage: #size [0 - 255]");

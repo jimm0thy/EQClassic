@@ -291,7 +291,7 @@ void HandleApplicationArguments(int argc, char** argv)
 			{
 				if (atoi(argv[4]) >= 0 && atoi(argv[4]) <= 255) 
 				{
-					if (Database::Instance()->CreateAccount(argv[2], argv[3], atoi(argv[4])) == 0)
+					if (Database::Instance()->CreateAccount(0) == 0) //jimm0thy - this was edited with account creation when loggin in and may need updating
 					{
 						cout << "database.CreateAccount failed." << endl;
 					}
